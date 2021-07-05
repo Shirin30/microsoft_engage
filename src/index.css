@@ -422,6 +422,7 @@ code {
 }
 .jitsi-frame{
   width:1000px;
+  display: inline-block;
 }
 
 .fileupload{
@@ -556,4 +557,25 @@ code {
 }
 .no-selected{
   display:flex;
+}
+
+.fas {
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #008080;
+}
+
+.item-center {
+    text-align: center;
+}
+.item-left {
+    text-align: left;
+}
+.jitsi-custom{
+  align-items: baseline;
+}
+.custom-meet-icon{
+  padding-left: 10px;
+  padding-right: 10px;
 }

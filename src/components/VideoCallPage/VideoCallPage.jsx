@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faVideo,faMicrophone,faPhone,faDesktop,faMicrophoneSlash, faVideoSlash,faCommentAlt,faThList,faCamera,faStopCircle} from '@fortawesome/free-solid-svg-icons';
 
 
 class JitsiComponent extends Component {
 
-    domain = 'meet.jit.si';
+    domain = window.location.hostname;
     api = {};
 
     constructor(props) {
         super(props);
         this.state = {
-            room: window.location.pathname,
+            room: 'meet.jit.si',
             user: {
-                name: 'Snigdha Jain'
+                name: 'Shirin Jain'
             },
             isAudioMuted: false,
-            isVideoMuted: false
+            isVideoMuted: false,
+
         }
     }
 
@@ -24,7 +27,7 @@ class JitsiComponent extends Component {
             roomName: this.state.room,
             width: '100%',
             height: 600,
-            configOverwrite: { prejoinPageEnabled: false },
+            configOverwrite: { prejoinPageEnabled: false},
             interfaceConfigOverwrite: {
                 // overwrite interface properties
             },
@@ -94,6 +97,7 @@ class JitsiComponent extends Component {
         if(command == 'hangup') {
             return this.props.history.push('/');
         }
+        
 
         if(command == 'toggleAudio') {
             this.setState({ isAudioMuted: !this.state.isAudioMuted });
@@ -103,6 +107,8 @@ class JitsiComponent extends Component {
             this.setState({ isVideoMuted: !this.state.isVideoMuted });
         }
     }
+  
+   
 
     componentDidMount() {
         if (window.JitsiMeetExternalAPI) {
@@ -118,13 +124,36 @@ class JitsiComponent extends Component {
             <>
             <div id="jitsi-iframe" className="jitsi-frame"></div>
             
-            {/* <div class="item-center">
-                <span>&nbsp;&nbsp;</span>
-                <i onClick={ () => this.executeCommand('toggleAudio') } className={`fas fa-2x grey-color ${isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'}`} aria-hidden="true" title="Mute / Unmute"></i>
-                <i onClick={ () => this.executeCommand('hangup') } className="fas fa-phone-slash fa-2x red-color" aria-hidden="true" title="Leave"></i>
-                <i onClick={ () => this.executeCommand('toggleVideo') } className={`fas fa-2x grey-color ${isVideoMuted ? 'fa-video-slash' : 'fa-video'}`} aria-hidden="true" title="Start / Stop camera"></i>
-                <i onClick={ () => this.executeCommand('toggleShareScreen') } className="fas fa-film fa-2x grey-color" aria-hidden="true" title="Share your screen"></i>
-            </div> */}
+            <div style={{"position":"relative"}}>
+                <span className="jitsi-custom">&nbsp;&nbsp;</span>
+                <i className="custom-meet-icon"onClick={ () => this.executeCommand('toggleAudio') }   title="Mute / Unmute">
+                    <FontAwesomeIcon className="icon" icon={isAudioMuted ?faMicrophoneSlash : faMicrophone}/>
+                </i>
+                <i className="custom-meet-icon" onClick={ () => this.executeCommand('hangup') }  title="Leave">
+                    <FontAwesomeIcon className="icon red" icon={faPhone}/>
+                </i>
+                <i className="custom-meet-icon" onClick={ () => this.executeCommand('toggleVideo') } title="Start / Stop camera">
+                    <FontAwesomeIcon className="icon" icon={isVideoMuted ? faVideoSlash : faVideo}/>
+                </i>
+                <i className="custom-meet-icon" onClick={ () => this.executeCommand('toggleShareScreen') }  title="Share your screen">
+                    <FontAwesomeIcon className="icon red" icon={faDesktop}/>
+                </i>
+                <i className="custom-meet-icon" onClick={ () => this.executeCommand('toggleChat') }  title="Chat/Message">
+                    <FontAwesomeIcon className="icon red" icon={faCommentAlt}/>
+                </i>
+                 <i className="custom-meet-icon" onClick={ () => this.executeCommand('toggleTileView') }  title="Tile View">
+                    <FontAwesomeIcon className="icon red" icon={faThList}/>
+                </i>
+                <i className="custom-meet-icon" onClick={ () => this.api.executeCommand('startRecording',{mode: 'file',dropboxToken: "sl.Az5WSCY-xIfnuoQX6w8pqdFgSnn0P0trgmnXj6rSznyrP028ep7mRP49PFcAPwO90EKhKUhN6CIAsnfpio6le5DiDbNY5-Z1gqxhj3obxLGqAdATT5xHgk_pO0vl86wZivYBf3c",}) }  title="Start Recording">
+                    <FontAwesomeIcon className="icon red" icon={faCamera}/>
+                </i>
+                <i className="custom-meet-icon" onClick={ () => this.api.executeCommand('stopRecording','file') }  title="Stop Recording">
+                    <FontAwesomeIcon className="icon red" icon={faStopCircle}/>
+                </i>
+
+                
+                
+            </div>
 
             </>
         );
