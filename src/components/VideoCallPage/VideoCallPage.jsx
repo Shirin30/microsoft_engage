@@ -6,13 +6,13 @@ import {faVideo,faMicrophone,faPhone,faDesktop,faMicrophoneSlash, faVideoSlash,f
 
 class JitsiComponent extends Component {
 
-    domain = window.location.hostname;
+    domain = 'meet.jit.si';
     api = {};
 
     constructor(props) {
         super(props);
         this.state = {
-            room: 'meet.jit.si',
+            room: window.location.pathname,
             user: {
                 name: 'Shirin Jain'
             },
