@@ -5,13 +5,16 @@ import 'react-calendar/dist/Calendar.css';
 import { useAuth, useResolved } from 'hooks';
 import { Login, Signup, Chat } from 'components';
 import { Switch, Route, useHistory } from 'react-router-dom';
-import VideoCallPage from 'components/VideoCallPage/VideoCallPage';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { VideoChat } from 'components/VideoChat/VideoChat';
+
 
 
 
 
 export const App = () => {
+  
+
   const history = useHistory();
   const { authUser } = useAuth();
   const authResolved = useResolved(authUser);
@@ -43,7 +46,8 @@ export const App = () => {
           <Route path="/" exact component={Chat} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/:id" component={VideoCallPage} />
+          <Route path="/:id"  component={VideoChat} />
+          
         </Switch>
       </div>
     </ChatProvider>

@@ -7,14 +7,21 @@ import { useHistory } from 'react-router-dom';
 import shortid from 'shortid';
 
 export const ChatInput = () => {
-  const { chatConfig, selectedChat } = useChat();
+  const { chatConfig, 
+    selectedChat,
+    myChats,
+    setMyChats,
+    selectChatClick,
+    setSelectedChat,
+    myMessages,
+    setMyMessages } = useChat();
   const [chatInputText, setChatInputText] = useState('');
   const [imageModalOpen, setImageModalOpen] = useState(false);
   const history = useHistory();
 
   const inputRef = useRef(null);
   const [image, setImage] = useState();
-
+    console.log("ughhhhhhhhhhhhhhhhhhhhhhhh"+myChats)
   const sendChatMessage = () => {
     if (selectedChat && chatInputText) {
       setChatInputText('');
@@ -35,8 +42,15 @@ export const ChatInput = () => {
     const uid = shortid.generate();
     // redirect to the call page.
     // history.push(`/${uid}`);
-    const win = window.open(`/${uid}`, "_blank");
-    win.focus();
+    history.push({pathname:`/${uid}`, state:{
+      selectedChat :selectedChat,
+      myChats:{myChats},
+      myMessages:myMessages,
+      chatConfig:chatConfig
+      
+
+    }});
+    
   }
 
   const handleChange = (e) => {

@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component,useEffect } from 'react'
 import {withRouter} from 'react-router-dom';
+import { getChats, ChatEngine } from 'react-chat-engine';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faVideo,faMicrophone,faPhone,faDesktop,faMicrophoneSlash, faVideoSlash,faCommentAlt,faThList,faCamera,faStopCircle} from '@fortawesome/free-solid-svg-icons';
+import {MessageList,ChatInput} from 'components'
 
 
 class JitsiComponent extends Component {
+    
+    
+     
 
     domain = 'meet.jit.si';
     api = {};
@@ -18,11 +23,14 @@ class JitsiComponent extends Component {
             },
             isAudioMuted: false,
             isVideoMuted: false,
-
+            
         }
     }
+    
+    
 
     startMeet = () => {
+    
         const options = {
             roomName: this.state.room,
             width: '100%',
@@ -120,8 +128,11 @@ class JitsiComponent extends Component {
 
     render() {
         const { isAudioMuted, isVideoMuted } = this.state;
+        
         return (
             <>
+
+
             <div id="jitsi-iframe" className="jitsi-frame"></div>
             
             <div style={{"position":"relative"}}>
