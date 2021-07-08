@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { useChat } from 'context';
 import { getChats, ChatEngine } from 'react-chat-engine';
 import { LeftRail, ChatToolbar, ChatInput, MessageList } from 'components';
@@ -6,30 +6,49 @@ import FileUpload from 'components/FileUpload/FileUpload';
 import TeamScheduler from 'components/Scheduler/Scheduler';
 import VideoCallPage from 'components/VideoCallPage/VideoCallPage';
 import { useLocation } from 'react-router-dom';
+import {fb} from 'service';
 
 
 export const VideoChat = () => {
   const {
+   setChatConfig,
+    chatConfig,
     myChats,
     setMyChats,
     setSelectedChat,
     setMyMessages,
+    selectedChat,
+    
     
   } = useChat();
-  const location = useLocation();
-  const selectedChat = location.state.selectedChat
-  console.log("chaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatttttttttttttt"+location.state.selectedChat.id)
-  // const myChats = location.state.selectedChat
-  const myMessages = location.state.myMessages
-  const chatConfig = location.state.chatConfig
-  console.log("my chatsssssssssssssssssssssssssssssssss"+myChats);
-  useEffect(() => {
-    console.log('My Chats: ', myChats);
-  }, [myChats]);
+  
+
+  
+
+
+
+
+  
+  
+  
+  
+  
+  
+ 
 
   useEffect(() => {
+    fb.firestore.collection('videoRooms').doc(window.location.pathname).collection("selectedChat").doc("1").get().then((doc)=>{
+setSelectedChat(doc.data());
+
+  })
+  fb.firestore.collection('videoRooms').doc(window.location.pathname).collection("myChats").doc("1").get().then((doc)=>{
+setMyChats(doc.data()["myChats"]);
+  })
+  fb.firestore.collection('videoRooms').doc(window.location.pathname).collection("chatConfig").doc("1").get().then((doc)=>{
+setChatConfig(doc.data());
+  })
     console.log('Selected Chat: ', selectedChat);
-  }, [selectedChat]);
+  }, []);
 
   return (
     <>
@@ -104,7 +123,7 @@ export const VideoChat = () => {
       <div className="chat-container">
         
         <div className="current-chat">
-          {selectedChat ?( 
+          {chatConfig && selectedChat ?( 
             <div className="chat">
               <MessageList/>
               <ChatInput/>

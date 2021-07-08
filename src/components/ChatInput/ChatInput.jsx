@@ -5,7 +5,7 @@ import { ImageUpload } from 'components';
 import { sendMessage } from 'react-chat-engine';
 import { useHistory } from 'react-router-dom';
 import shortid from 'shortid';
-
+import {fb} from 'service';
 export const ChatInput = () => {
   const { chatConfig, 
     selectedChat,
@@ -42,15 +42,19 @@ export const ChatInput = () => {
     const uid = shortid.generate();
     // redirect to the call page.
     // history.push(`/${uid}`);
-    history.push({pathname:`/${uid}`, state:{
-      selectedChat :selectedChat,
-      myChats:{myChats},
-      myMessages:myMessages,
-      chatConfig:chatConfig
+    history.push(`/${uid}`);
       
-
-    }});
-    
+      
+      
+      
+      
+     
+ 
+    fb.firestore.collection("videoRooms").doc(uid).collection("selectedChat").doc("1").set(selectedChat);
+    fb.firestore.collection("videoRooms").doc(uid).collection("chatConfig").doc("1").set(chatConfig);
+    fb.firestore.collection("videoRooms").doc(uid).collection("myChats").doc("1").set({
+      myChats : myChats
+    })
   }
 
   const handleChange = (e) => {
