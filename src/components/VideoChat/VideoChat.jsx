@@ -129,7 +129,10 @@ setChatConfig(doc.data());
               <ChatInput/>
             </div>
           ):(<></>)}
+          {!!chatConfig?(
           <VideoCallPage/>
+          ):(<></>)
+          }
         </div>
       </div>
     </>

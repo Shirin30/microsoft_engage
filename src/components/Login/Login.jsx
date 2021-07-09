@@ -32,7 +32,16 @@ export const Login = () => {
   };
 
   return (
+    <div>
+      <div className="front">
+        <img src='/img/logo.webp' className="img-logo"/>
+      <h1>Welcome to Microsoft TEAMS</h1>
+      </div>
+      <h3 className="heading1">Now meet, chat, call, and collaborate in just one place. </h3>
+      <br></br>
+      <br></br>
     <div className="auth-form">
+      
       <h1>Login</h1>
       <Formik
         onSubmit={login}
@@ -65,6 +74,7 @@ export const Login = () => {
       
 
       {!!serverError && <div className="error">{serverError}</div>}
+    </div>
     </div>
   );
 };

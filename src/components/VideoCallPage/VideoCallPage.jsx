@@ -2,7 +2,7 @@ import React, { Component,useEffect } from 'react'
 import {withRouter} from 'react-router-dom';
 import { getChats, ChatEngine } from 'react-chat-engine';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faVideo,faMicrophone,faPhone,faDesktop,faMicrophoneSlash, faVideoSlash,faCommentAlt,faThList,faCamera,faStopCircle} from '@fortawesome/free-solid-svg-icons';
+import {faCopy,faVideo,faMicrophone,faPhone,faDesktop,faMicrophoneSlash, faVideoSlash,faCommentAlt,faThList,faCamera,faStopCircle} from '@fortawesome/free-solid-svg-icons';
 import {MessageList,ChatInput} from 'components'
 
 
@@ -10,7 +10,7 @@ class JitsiComponent extends Component {
     
     
      
-
+    
     domain = 'meet.jit.si';
     api = {};
 
@@ -19,7 +19,7 @@ class JitsiComponent extends Component {
         this.state = {
             room: window.location.pathname,
             user: {
-                name: 'Shirin Jain'
+                name: "user"
             },
             isAudioMuted: false,
             isVideoMuted: false,
@@ -128,10 +128,11 @@ class JitsiComponent extends Component {
 
     render() {
         const { isAudioMuted, isVideoMuted } = this.state;
+        const url = `${window.location.origin}${window.location.pathname}`;
         
         return (
             <>
-
+            <div className="vc">
 
             <div id="jitsi-iframe" className="jitsi-frame"></div>
             
@@ -155,17 +156,27 @@ class JitsiComponent extends Component {
                  <i className="custom-meet-icon" onClick={ () => this.executeCommand('toggleTileView') }  title="Tile View">
                     <FontAwesomeIcon className="icon red" icon={faThList}/>
                 </i>
-                <i className="custom-meet-icon" onClick={ () => this.api.executeCommand('startRecording',{mode: 'file',dropboxToken: "sl.Az5WSCY-xIfnuoQX6w8pqdFgSnn0P0trgmnXj6rSznyrP028ep7mRP49PFcAPwO90EKhKUhN6CIAsnfpio6le5DiDbNY5-Z1gqxhj3obxLGqAdATT5xHgk_pO0vl86wZivYBf3c",}) }  title="Start Recording">
-                    <FontAwesomeIcon className="icon red" icon={faCamera}/>
-                </i>
-                <i className="custom-meet-icon" onClick={ () => this.api.executeCommand('stopRecording','file') }  title="Stop Recording">
-                    <FontAwesomeIcon className="icon red" icon={faStopCircle}/>
-                </i>
+                
+                <div>
 
+                </div>
                 
                 
             </div>
-
+            <div>
+            <p className="info-text">
+       Share this meeting link with others you want in the meeting.
+      </p>
+      <div className="meet-link">
+        <span className="meet-span">{url}</span>
+        <FontAwesomeIcon
+          className="meet-link-icon"
+          icon={faCopy}
+          onClick={() => navigator.clipboard.writeText(url)}
+        />
+      </div>
+      </div>
+            </div>
             </>
         );
     }
