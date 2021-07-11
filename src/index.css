@@ -453,7 +453,7 @@ code {
   color: white;
   cursor: pointer;
   border-radius: 0px;
-  background-color: #008080;
+  background-color: #000;
   
   
 }
@@ -469,11 +469,11 @@ code {
   padding-bottom: 5px;
   align-items : center;
   justify-items: center;
-  color: black;
+  color: white;
   padding-left: 30px;
   
 
-  background-color: #ffffff;
+  background-color:black;
 }
 
 .file-attachment-text {
