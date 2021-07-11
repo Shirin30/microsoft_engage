@@ -88,9 +88,9 @@ export const Signup = () => {
       {!!serverError && <div className="error">{serverError}</div>}
     </div>
     {!!isSuccess?(
-      <div>
-        Sign Up successful!
-        <span className="auth-link" onClick={() => history.push('login')}>
+      <div className="successful">
+        Sign Up successful!{' '}
+        <span className="auth-link" onClick={() => history.push('/')}>
                 Hop up to Teams!
               </span>
 
