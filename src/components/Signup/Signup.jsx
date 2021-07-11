@@ -8,6 +8,7 @@ import { defaultValues, validationSchema } from './formikConfig';
 export const Signup = () => {
   const history = useHistory();
   const [serverError, setServerError] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const signup = ({ email, userName, password }, { setSubmitting }) => {
     fb.auth
@@ -30,6 +31,7 @@ export const Signup = () => {
               .doc(res.user.uid)
               .set({ userName, avatar: '' ,email});
           });
+          setIsSuccess(true);
         } else {
           setServerError(
             "We're having trouble signing you up. Please try again.",
@@ -49,6 +51,7 @@ export const Signup = () => {
   };
 
   return (
+    <div>
     <div className="auth-form">
       <h1>Signup</h1>
       <Formik
@@ -83,6 +86,18 @@ export const Signup = () => {
       </Formik>
 
       {!!serverError && <div className="error">{serverError}</div>}
+    </div>
+    {!!isSuccess?(
+      <div>
+        Sign Up successful!
+        <span className="auth-link" onClick={() => history.push('login')}>
+                Hop up to Teams!
+              </span>
+
+      </div>
+    ):(
+    <></>
+    )}
     </div>
   );
 };
