@@ -103,7 +103,7 @@ const   FileUpload=()=> {
           }}
           className="file-attachment-icon"
         >
-        <Icon name="attach" color="blue" />
+        <Icon name="attach" color="black" />
         <p className="file-attachment-text"> Upload a file </p>
         <input type="file" ref={inputRef} className="file-input" placeholder = "No file chosen" onChange={onFileChange} />
 

@@ -99,6 +99,7 @@ const TeamScheduler=()=> {
 
   return (
       <div>
+        <h3 className="Schedule-title">Schedule important meetings and let your team members keep track of events.</h3>
         <form>
           <div className="date-picker">
               <label className="form-label">Title</label>

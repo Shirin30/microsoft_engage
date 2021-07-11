@@ -453,7 +453,8 @@ code {
   color: white;
   cursor: pointer;
   border-radius: 0px;
-  background-color: #000;
+  background-color: #5c5caa;
+  margin-top:10px;
   
   
 }
@@ -473,7 +474,7 @@ code {
   padding-left: 30px;
   
 
-  background-color:black;
+  background-color:#5c5caa;
 }
 
 .file-attachment-text {
@@ -636,4 +637,10 @@ code {
   margin-left:50px;
   margin-top: 10px;
   font-size: 14px;
+}
+
+.Schedule-title{
+  margin-left:250px;
+  margin-top:20px;
+  padding-top: 20px;
 }
