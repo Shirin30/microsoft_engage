@@ -5,7 +5,8 @@ import { LeftRail, ChatToolbar, ChatInput, MessageList } from 'components';
 import FileUpload from 'components/FileUpload/FileUpload';
 import TeamScheduler from 'components/Scheduler/Scheduler';
 
-
+//this is the main chat screen.
+//we first import few contexts from our chat context, which contain useful information about our chat.
 export const Chat = () => {
   const {
     myChats,
@@ -30,7 +31,8 @@ export const Chat = () => {
   useEffect(() => {
     console.log('Selected Chat: ', selectedChat);
   }, [selectedChat]);
-
+//we then return the chatscreen, and handle functions like, new chat , delete chat, new message, delete message etc.
+//if no chat is selected we show an image to initiate chat. then after we show icons that take it to file upload, event schedule screen, chat screen etc.
   return (
     <>
       {!!chatConfig && (

@@ -8,10 +8,6 @@ import { Switch, Route, useHistory } from 'react-router-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { VideoChat } from 'components/VideoChat/VideoChat';
 
-
-
-
-
 export const App = () => {
   
 
@@ -38,7 +34,8 @@ export const App = () => {
       }
     }
   }, [authResolved, authUser, history]);
-
+  // these are the routes of our application
+  //if the user is suthorised we take to various pages else we just show the login page.
   return authResolved ? (
     <ChatProvider authUser={authUser}>
       <div className="app">
