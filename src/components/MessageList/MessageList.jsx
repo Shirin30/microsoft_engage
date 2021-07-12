@@ -38,7 +38,7 @@ export const MessageList = () => {
                     <AutoLinkText text={individualMessage.text}/>
                     
                     </div>
-                  { m[0].sender.username == chatConfig.userName ? (
+                  { m[0].sender.username === chatConfig.userName ? (
                       <div onClick={() => deleteMymessage(individualMessage)} className="send-message-icon">
                         <Icon name="trash alternate" color="grey" />
                       </div>
