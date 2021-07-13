@@ -102,6 +102,7 @@ const   FileUpload=()=> {
             }
           }}
           className="file-attachment-icon"
+          
         >
         <Icon name="attach" color="black" />
         <p className="file-attachment-text"> Upload a file </p>
